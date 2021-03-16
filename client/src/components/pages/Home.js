@@ -3,7 +3,12 @@ import React from 'react';
 import styled from 'styled-components';
 import Cookie from '../atoms/Cookie/Cookie';
 
+import { useSelector } from 'react-redux';
+
+
 function Home() {
+    const { points } = useSelector((state) => state.cookiePoints);
+
     return (
         <StyledGrid container>
             <Grid container item xs={12} justify="center" alignItems="center">
@@ -16,7 +21,7 @@ function Home() {
             </Grid>
             <Grid container item xs={12} justify="center" alignItems="center">
                 <Typography variant="h4" align="center">
-                    POINTS: 10
+                    POINTS: {points}
                 </Typography>
             </Grid>
         </StyledGrid>

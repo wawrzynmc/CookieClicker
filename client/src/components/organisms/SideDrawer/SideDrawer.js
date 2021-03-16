@@ -19,7 +19,7 @@ function SideDrawer() {
 
     return (
         <>
-			<IconButton edge="end" onClick={() => toggleDrawer('right', true)} disableHoverEffects>
+			<IconButton edge="end" onClick={() => toggleDrawer('right', true)}>
 				<Menu color="secondary" style={{ fontSize: 30 }} />
 			</IconButton>
 			<StyledDrawer

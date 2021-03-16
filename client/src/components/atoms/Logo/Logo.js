@@ -8,7 +8,7 @@ function Logo() {
     const theme = useTheme();
 
     return (
-        <IconButton edge="start" disableHoverEffects>
+        <IconButton edge="start">
             <StyledTypography
                 component={NavLink}
                 to="/home"

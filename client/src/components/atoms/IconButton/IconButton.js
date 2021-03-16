@@ -1,17 +1,16 @@
 // -- imports
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { IconButton as MaterialIconButton } from '@material-ui/core';
 
 // * -- COMPONENT
-function IconButton({ children, edge, onClick, disableHoverEffects }) {
+function IconButton({ children, edge, onClick }) {
     return (
         <StyledIconButton
             edge={edge}
             onClick={onClick}
             disableRipple={true}
-            disableHoverEffects={disableHoverEffects}
         >
             {children}
         </StyledIconButton>
@@ -21,13 +20,9 @@ function IconButton({ children, edge, onClick, disableHoverEffects }) {
 // -- styled components
 const StyledIconButton = styled(({ ...props }) => <MaterialIconButton {...props} />)`
     && {
-        ${({ disableHoverEffects }) =>
-            disableHoverEffects &&
-            css`
-                &:hover {
-                    background: transparent;
-                }
-            `}
+        &:hover {
+            background: transparent;
+        }
     }
 `;
 

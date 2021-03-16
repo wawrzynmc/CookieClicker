@@ -1,0 +1,1 @@
+export { incrementPoints } from './cookiePoints';

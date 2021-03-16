@@ -43,21 +43,23 @@ function NavigationItems({ sideDrawer }) {
                     if (!inSideDrawer && key === 'home') return false;
                     else return true;
                 })
-                .map(({ key, title, path, icon }) => (
-                    <NavigationItem
-                        key={key}
-                        title={title}
-                        path={path}
-                        icon={icon}
-                        inSideDrawer={inSideDrawer}
-                    />
-                ))}
+                .map(({ key, title, path, icon }) => {
+                    return (
+                        <NavigationItem
+                            key={key}
+                            title={title}
+                            path={path}
+                            icon={icon}
+                            inSideDrawer={inSideDrawer}
+                        />
+                    );
+                })}
         </StyledList>
     );
 }
 
 // -- styled components
-const StyledList = styled(({ ...props }) => <List {...props} />)`
+const StyledList = styled(({ sideDrawer, ...props }) => <List {...props} />)`
     && {
         display: flex;
         flex-direction: row;

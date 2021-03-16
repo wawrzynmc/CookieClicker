@@ -6,9 +6,11 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { ListItem, ListItemIcon, ListItemText, useTheme } from '@material-ui/core';
 
 // * -- COMPONENT
-function NavigationItem({ path, title, key, icon, inSideDrawer }) {
+function NavigationItem({ key, title, path, icon, inSideDrawer }) {
     const theme = useTheme();
     const location = useLocation();
+
+    console.log('navItem', key);
 
     return (
         <StyledListItem
@@ -34,7 +36,7 @@ function NavigationItem({ path, title, key, icon, inSideDrawer }) {
 }
 
 // -- styled components
-const StyledListItem = styled(({ ...props }) => <ListItem {...props} />)`
+const StyledListItem = styled(({ inSideDrawer, ...props }) => <ListItem {...props} />)`
     && {
         width: ${(props) => (props.inSideDrawer ? '100%' : 'auto')};
     }
@@ -75,6 +77,5 @@ const StyledListItemIcon = styled(({ ...props }) => <ListItemIcon {...props} />)
         padding-right: 10px;
     }
 `;
-
 
 export default NavigationItem;
