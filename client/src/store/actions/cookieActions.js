@@ -6,3 +6,9 @@ export const incrementPoints = (points) => {
         points,
     };
 };
+
+export const clearPoints = () => {
+    return {
+        type: actionTypes.CLEAR_POINTS,
+    };
+};

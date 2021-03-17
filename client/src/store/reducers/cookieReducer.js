@@ -12,11 +12,20 @@ const addPoints = (state, action) => {
     };
 };
 
+const clearPoints = (state, action) => {
+    return { 
+        ...state, 
+        points: 0 
+    };
+};
+
 // --- REDUCER ACTIONS
 const cookieReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.INCREMENT_POINTS:
             return addPoints(state, action);
+        case actionTypes.CLEAR_POINTS:
+            return clearPoints(state, action);
         default:
             return state;
     }

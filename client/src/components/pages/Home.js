@@ -3,14 +3,16 @@ import React from 'react';
 import styled from 'styled-components';
 import Cookie from '../atoms/Cookie/Cookie';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ValueLabel from '../atoms/ValueLabel/ValueLabel';
 import { calculateLevel } from '../../shared/utils';
-import { DeleteForeverOutlined } from '@material-ui/icons';
+import { RotateLeftOutlined, RotateRightOutlined } from '@material-ui/icons';
+import { clearPoints } from '../../store/actions';
 
 function Home() {
     const theme = useTheme();
     const { points } = useSelector((state) => state.cookie);
+    const dispatch = useDispatch();
 
     return (
         <StyledContainerGrid
@@ -37,8 +39,18 @@ function Home() {
                 <ValueLabel value={points}>Points</ValueLabel>
             </StyledCookieGrid>
             <Grid container item direction="row" justify="center" alignItems="center">
-                <Button variant="contained" color="secondary" startIcon={<DeleteForeverOutlined />}>
-                    Delete
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    startIcon={<RotateLeftOutlined />}
+                    size="large"
+                    disableRipple={true}
+                    endIcon={<RotateRightOutlined />}
+                    style={{ fontSize: '1.2rem' }}
+                    onClick={() => dispatch(clearPoints())}
+                    disabled={points === 0}
+                >
+                    reset points
                 </Button>
             </Grid>
         </StyledContainerGrid>
@@ -52,6 +64,10 @@ const StyledContainerGrid = styled(({ ...props }) => <Grid {...props} />)`
 `;
 
 const StyledCookieGrid = styled(({ theme, ...props }) => <Grid {...props} />)`
+    && {
+        max-width: 960px;
+    }
+
     & h4 {
         writing-mode: vertical-rl;
         text-orientation: upright;

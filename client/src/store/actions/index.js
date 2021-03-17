@@ -1,1 +1,1 @@
-export { incrementPoints } from './cookieActions';
+export { incrementPoints, clearPoints } from './cookieActions';

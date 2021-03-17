@@ -17,6 +17,12 @@ const GlobalStyles = createGlobalStyle`
         overflow: auto;
         flex-grow: 1;
     }
+
+
+    body {
+        height: 100vh;
+	    background: linear-gradient(to bottom, #e73c7e, #673ab7);
+    }
 `;
 
 const theme = createMuiTheme({

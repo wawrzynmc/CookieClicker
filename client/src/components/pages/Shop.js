@@ -1,11 +1,8 @@
-import React from 'react'
+import { Popover, Typography } from '@material-ui/core';
+import React, { useState } from 'react';
 
 function Shop() {
-    return (
-        <div>
-            Shop
-        </div>
-    )
+    return <div>SHOP</div>;
 }
 
-export default Shop
+export default Shop;
