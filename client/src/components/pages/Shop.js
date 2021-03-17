@@ -1,8 +1,11 @@
-import { Popover, Typography } from '@material-ui/core';
-import React, { useState } from 'react';
+// -- imports
+import React from 'react';
 
+// * -- COMPONENT
 function Shop() {
     return <div>SHOP</div>;
 }
+
+// -- styled components
 
 export default Shop;

@@ -1,9 +1,13 @@
+// -- imports
 import React from 'react';
 import styled from 'styled-components';
 import { Typography, useTheme } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
+
+// -- internal components
 import IconButton from '../IconButton/IconButton';
 
+// * -- COMPONENT
 function Logo() {
     const theme = useTheme();
 

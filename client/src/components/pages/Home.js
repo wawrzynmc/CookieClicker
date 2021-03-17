@@ -1,14 +1,16 @@
-import { Button, Grid, Typography, useTheme } from '@material-ui/core';
 import React from 'react';
 import styled from 'styled-components';
-import Cookie from '../atoms/Cookie/Cookie';
-
-import { useDispatch, useSelector } from 'react-redux';
-import ValueLabel from '../atoms/ValueLabel/ValueLabel';
-import { calculateLevel } from '../../shared/utils';
+import { Button, Grid, Typography, useTheme } from '@material-ui/core';
 import { RotateLeftOutlined, RotateRightOutlined } from '@material-ui/icons';
+
+// -- internal components
+import Cookie from '../atoms/Cookie/Cookie';
+import ValueLabel from '../atoms/ValueLabel/ValueLabel';
+import { useDispatch, useSelector } from 'react-redux';
+import { calculateLevel } from '../../shared/utils';
 import { clearPoints } from '../../store/actions';
 
+// * -- COMPONENT
 function Home() {
     const theme = useTheme();
     const { points } = useSelector((state) => state.cookie);
@@ -57,6 +59,7 @@ function Home() {
     );
 }
 
+// -- styled components
 const StyledContainerGrid = styled(({ ...props }) => <Grid {...props} />)`
     && {
         height: 100%;

@@ -11,20 +11,39 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: 0;
     }
 
-    /* This should go to layout component */
+    body {
+        height: 100vh;
+	    background: linear-gradient(to bottom, #e73c7e, #673ab7);
+    }
+
     main {
         height: 85vh;
         overflow: auto;
         flex-grow: 1;
     }
 
+    // -- scrollbar styles
+    // ---- The emerging W3C standard that is currently Firefox-only
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(155, 155, 155, 0.7) transparent;
+    }
 
-    body {
-        height: 100vh;
-	    background: linear-gradient(to bottom, #e73c7e, #673ab7);
+    // ---- Works on Chrome/Edge/Safari
+    *::-webkit-scrollbar {
+        width: 5px;
+    }
+    *::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    *::-webkit-scrollbar-thumb {
+        background-color: rgba(155, 155, 155, 0.7);
+        border-radius: 20px;
+        border: transparent;
     }
 `;
 
+// * -- THEME
 const theme = createMuiTheme({
     palette: {
         primary: deepPurple,
@@ -46,9 +65,24 @@ const theme = createMuiTheme({
             fontFamily: ['Bungee', 'Roboto', 'Helvetica', 'sans-serif'].join(','),
             fontSize: '2rem',
         },
+        h4: {
+            fontSize: '1.8rem',
+        },
+        h5: {
+            fontSize: '1.6rem',
+        },
+        h6: {
+            fontSize: '1.4rem',
+        },
+        body1: {
+            fontSize: '1.2rem',
+            letterSpacing: '0.6px',
+        },
+        body2: {
+            fontSize: '1rem',
+            letterSpacing: '0.6px',
+        },
     },
 });
-
-// -- responsive font sizes
 
 export { GlobalStyles, theme };

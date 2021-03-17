@@ -1,12 +1,13 @@
 // -- imports
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-
 import { IconButton as MaterialIconButton, Popover, Typography } from '@material-ui/core';
 
 // * -- COMPONENT
 function IconButton({ children, edge, onClick, withPopover = false, popoverContent }) {
+    // ---- dealing with anchor for popover
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = !!anchorEl;
 
     const handlePopoverOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -15,8 +16,6 @@ function IconButton({ children, edge, onClick, withPopover = false, popoverConte
     const handlePopoverClose = () => {
         setAnchorEl(null);
     };
-
-    const open = Boolean(anchorEl);
 
     return (
         <>
@@ -45,7 +44,12 @@ function IconButton({ children, edge, onClick, withPopover = false, popoverConte
                     onClose={handlePopoverClose}
                     disableRestoreFocus
                 >
-                    <Typography color="textSecondary" align="left" style={{ padding: '10px' }}>
+                    <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        align="left"
+                        style={{ padding: '10px' }}
+                    >
                         {popoverContent}
                     </Typography>
                 </Popover>
