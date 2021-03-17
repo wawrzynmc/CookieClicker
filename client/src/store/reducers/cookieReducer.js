@@ -13,7 +13,7 @@ const addPoints = (state, action) => {
 };
 
 // --- REDUCER ACTIONS
-const cookiePointsReducer = (state = initialState, action) => {
+const cookieReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.INCREMENT_POINTS:
             return addPoints(state, action);
@@ -22,4 +22,4 @@ const cookiePointsReducer = (state = initialState, action) => {
     }
 };
 
-export default cookiePointsReducer;
+export default cookieReducer;

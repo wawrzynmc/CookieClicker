@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import cookiePointsReducer from './cookiePoints';
+import cookieReducer from './cookieReducer';
 
 // -- combine all reducers
 const rootReducer = combineReducers({
-    cookiePoints: cookiePointsReducer,
+    cookie: cookieReducer,
 });
 
 export default rootReducer;
