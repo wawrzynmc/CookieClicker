@@ -13,7 +13,7 @@ const GlobalStyles = createGlobalStyle`
 
     /* This should go to layout component */
     main {
-        height: 80vh;
+        height: 85vh;
         overflow: auto;
         flex-grow: 1;
     }

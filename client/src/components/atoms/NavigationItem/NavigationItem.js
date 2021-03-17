@@ -10,8 +10,6 @@ function NavigationItem({ key, title, path, icon, inSideDrawer }) {
     const theme = useTheme();
     const location = useLocation();
 
-    console.log('navItem', key);
-
     return (
         <StyledListItem
             theme={theme}

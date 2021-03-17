@@ -4,13 +4,10 @@ import { motion, useCycle } from 'framer-motion';
 import coockieSVG from '../../../assets/images/cookie.svg';
 import { useDispatch } from 'react-redux';
 import { incrementPoints } from '../../../store/actions';
+import { cookieAnimation } from '../../../shared/animations';
 
 function Cookie() {
-    const [animate, cycle] = useCycle(
-        { rotate: 0, x: '0' },
-        { rotate: 90, x: '3px' },
-        { rotate: -90, x: '-6px' }
-    );
+    const [animate, cycle] = useCycle(...cookieAnimation);
     const dispatch = useDispatch();
 
     return (
