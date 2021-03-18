@@ -6,10 +6,10 @@ import {
     signinController,
     signoutController,
     signupController,
-} from '../controllers/users.controller';
-import { currentUserMiddleware } from '../middlewares/current-user.middleware';
-import { validateRequestMiddleware } from '../middlewares/validate-request.middleware';
-import { signinValidator, signupValidator } from '../utils/validators/users.validator';
+} from '../../controllers/users.controller';
+import { currentUserMiddleware } from '../../middlewares/current-user.middleware';
+import { validateRequestMiddleware } from '../../middlewares/validate-request.middleware';
+import { signinValidator, signupValidator } from '../../utils/validators/users.validator';
 
 // * -- USER ROUTES
 const router = Router();
@@ -20,4 +20,4 @@ router.post('/signin', signinValidator, validateRequestMiddleware, signinControl
 router.post('/signout', signoutController);
 // rotuter.post('/:id/achivements')
 
-export { router as userRouter };
+export { router as usersRouter };

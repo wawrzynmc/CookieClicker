@@ -1,9 +1,9 @@
 import express, { Request, Response } from 'express';
-import morgan from 'morgan';
+import * as dotenv from 'dotenv';
+import * as path from 'path';
 import { json } from 'body-parser';
 import 'express-async-errors';
 
-// import { errorHandler, NotFoundError } from '@kw-ticketing-app/common';
 
 // -- internal imports
 import { corsMiddleware } from './middlewares/cors.middleware';
@@ -11,8 +11,12 @@ import { morganMiddleware } from './middlewares/morgan.middleware';
 import { NotFoundError } from './errors/not-found.error';
 import { errorHandler } from './middlewares/error-handler.middleware';
 import { cookieSessionMiddleware } from './middlewares/cookie-session.middleware';
-import { userRouter } from './routes/users.route';
+import { usersRouter } from './routes/users/users.route';
+import { achivementsRouter } from './routes/achivements/achivements.route';
 // import { currentUserRouter } from './routes/current-user';
+
+// -- config env path
+dotenv.config({ path: path.join(__dirname, '.env') });
 
 // * -- app
 const app: express.Application = express();
@@ -24,7 +28,8 @@ app.use(corsMiddleware);
 app.use(cookieSessionMiddleware);
 
 // * -- routes
-app.use('/api/users', userRouter);
+app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/achivements', achivementsRouter);
 
 app.all('*', (req: Request, res: Response) => {
     throw new NotFoundError();

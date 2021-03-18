@@ -1,11 +1,6 @@
-import * as dotenv from 'dotenv';
-import * as path from 'path';
-
 // -- internal imports
 import { app } from './app';
 import { connectMongo } from './utils/connect-mongo';
-
-dotenv.config({ path: path.join(__dirname, '.env') });
 
 // ---- booting
 const start = async () => {
