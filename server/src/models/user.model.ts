@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { Password } from '../utils/password';
 
 // * -- INTERFACES
@@ -19,6 +19,12 @@ interface UserModel extends mongoose.Model<UserDoc> {
     build(attrs: UserAttrs): UserDoc;
 }
 
+// -- user roles
+export enum UserRoles {
+    ADMIN = 'admin',
+    USER = 'user',
+}
+
 // * -- SCHEMA
 const userSchema = new mongoose.Schema(
     {
@@ -32,6 +38,15 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        role: {
+            type: String,
+            default: UserRoles.USER,
+            enum: Object.values(UserRoles),
+        },
+        achivements: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Achivement'
+        }]
     },
     {
         toJSON: {

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 // * -- INTERFACES
 // ---- user attributes (required to create a user)
@@ -33,16 +33,22 @@ const achivementSchema = new mongoose.Schema(
         },
         description: {
             type: String,
-            required: true
+            required: true,
         },
         points: {
             type: Number,
-            min: 1
+            min: 1,
         },
         level: {
             type: Number,
-            min: 1
+            min: 1,
         },
+        users: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+            },
+        ],
     },
     {
         toJSON: {
