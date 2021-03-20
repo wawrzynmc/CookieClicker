@@ -1,0 +1,4 @@
+Overall:
+    ☐ consider splitting components based on atomic design (e.g. NavItem should be an atom?)
+    ☐ some optimalization (memo, useMemo)
+    ☐ think about splitting components into component and styles component (styled components)

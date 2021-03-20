@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ListItem, ListItemIcon, ListItemText, useTheme } from '@material-ui/core';
 
-
 // * -- COMPONENT
 function NavigationItem({ key, title, path, icon, inSideDrawer }) {
     const theme = useTheme();
@@ -24,11 +23,13 @@ function NavigationItem({ key, title, path, icon, inSideDrawer }) {
             inSideDrawer={inSideDrawer}
         >
             <StyledListItemIcon>{icon && icon}</StyledListItemIcon>
-            <ListItemText
-                primary={title}
-                primaryTypographyProps={{ color: 'textPrimary', variant: 'h3' }}
-                style={{ textTransform: 'uppercase', textAlign: 'center' }}
-            />
+            {title && (
+                <ListItemText
+                    primary={title}
+                    primaryTypographyProps={{ color: 'textPrimary', variant: 'h3' }}
+                    style={{ textTransform: 'uppercase', textAlign: 'center' }}
+                />
+            )}
         </StyledListItem>
     );
 }

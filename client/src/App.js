@@ -1,6 +1,6 @@
 // -- imports
 import React, { Suspense } from 'react';
-import { CssBaseline, responsiveFontSizes, ThemeProvider } from '@material-ui/core';
+import { Container, CssBaseline, responsiveFontSizes, ThemeProvider } from '@material-ui/core';
 import { Route, Redirect, Switch, useLocation } from 'react-router-dom';
 
 // -- global styles
@@ -35,12 +35,12 @@ function App() {
     return (
         <ThemeProvider theme={responsiveFontSizes(theme)}>
             <Header />
-            <main>
+            <Container component="main">
                 <Suspense fallback={<Loader />}>
                     <GlobalStyles />
                     {routes}
                 </Suspense>
-            </main>
+            </Container>
             <CssBaseline />
         </ThemeProvider>
     );

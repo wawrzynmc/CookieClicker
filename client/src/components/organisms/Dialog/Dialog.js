@@ -7,7 +7,6 @@ import {
     DialogContent,
     DialogContentText,
     DialogActions,
-    Divider,
 } from '@material-ui/core';
 import { ErrorOutlineOutlined } from '@material-ui/icons';
 import React, { useState } from 'react';
@@ -85,4 +84,4 @@ const StyledDialogTitle = styled(({ type, ...props }) => <DialogTitle {...props}
     }
 `;
 
-export default Dialog;
+export default React.memo(Dialog);

@@ -6,6 +6,7 @@ import {
     StoreMallDirectoryOutlined,
     FitnessCenterOutlined,
     HomeOutlined,
+    ExitToAppOutlined,
 } from '@material-ui/icons';
 
 // -- internal components
@@ -30,6 +31,12 @@ const navItems = [
         title: `shop`,
         path: `/shop`,
         icon: <FitnessCenterOutlined color="secondary" style={{ fontSize: '2rem' }} />,
+    },
+    {
+        key: 'authenticate',
+        title: 'authenticate',
+        path: `/authenticate`,
+        icon: <ExitToAppOutlined color="secondary" style={{ fontSize: '2rem' }} />,
     },
 ];
 
@@ -80,4 +87,4 @@ const StyledList = styled(({ sideDrawer, ...props }) => <List {...props} />)`
     }
 `;
 
-export default NavigationItems;
+export default React.memo(NavigationItems);

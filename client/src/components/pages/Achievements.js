@@ -1,6 +1,6 @@
 // -- imports
 import React, { useEffect } from 'react';
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 import { Container, Grid, Typography, useTheme } from '@material-ui/core';
 import styled from 'styled-components';
 
@@ -13,8 +13,6 @@ import Loader from '../molecules/Loader/Loader';
 // * -- COMPONENT
 function Achievements() {
     const theme = useTheme();
-    const queryClient = useQueryClient();
-
     const { data: achivements, error, isLoading } = useQuery('fetchAchivements', fetchAchivements);
 
     useEffect(() => {

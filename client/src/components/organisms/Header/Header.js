@@ -16,11 +16,11 @@ function Header() {
                 <StyledGrid container justify="space-between">
                     <Logo />
 
-                    <Hidden smDown>
+                    <Hidden mdDown>
                         <NavigationItems sideDrawer={false} />
                     </Hidden>
 
-                    <Hidden mdUp>
+                    <Hidden lgUp>
                         <SideDrawer />
                     </Hidden>
                 </StyledGrid>

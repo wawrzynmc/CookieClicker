@@ -46,7 +46,7 @@ function AchivementAccordion({ achivement, id }) {
 
                     <Typography
                         color="primary"
-                        variant="h5"
+                        variant="h6"
                         style={{ flexGrow: 1, letterSpacing: '1px' }}
                         align="center"
                     >
