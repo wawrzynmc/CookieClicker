@@ -9,7 +9,7 @@ import {
 } from '../../controllers/users.controller';
 import { currentUserMiddleware } from '../../middlewares/current-user.middleware';
 import { validateRequestMiddleware } from '../../middlewares/validate-request.middleware';
-import { signinValidator, signupValidator } from '../../utils/validators/users.validator';
+import { signinValidator, signupValidator } from '../../validators/users.validator';
 
 // * -- USER ROUTES
 const router = Router();
