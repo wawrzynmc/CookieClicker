@@ -12,6 +12,7 @@ interface UserAttrs {
 interface UserDoc extends mongoose.Document {
     email: string;
     password: string;
+    role: UserRoles;
 }
 
 // ---- user model properties and methods (represents entire collection of data)

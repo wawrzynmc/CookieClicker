@@ -16,7 +16,7 @@ export const signupController = async (req: Request, res: Response, next: NextFu
     const { email, password } = req.body as signupDto;
 
     // -- check if user already exists
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email }, { achivements: 0 });
     if (existingUser) {
         throw new BadRequestError('User with that email already exists');
     }
@@ -30,6 +30,7 @@ export const signupController = async (req: Request, res: Response, next: NextFu
         {
             id: user.id,
             email: user.email,
+            role: user.role,
         },
         process.env.JWT_KEY!
     );
@@ -46,7 +47,7 @@ export const signinController = async (req: Request, res: Response, next: NextFu
     const { email, password } = req.body as signinDto;
 
     // -- check if user exists
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email }, { achivements: 0 });
     if (!existingUser) {
         throw new BadRequestError('Invalid credentials');
     }
@@ -62,6 +63,7 @@ export const signinController = async (req: Request, res: Response, next: NextFu
         {
             id: existingUser.id,
             email: existingUser.email,
+            role: existingUser.role,
         },
         process.env.JWT_KEY!
     );
