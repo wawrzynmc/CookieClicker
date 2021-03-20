@@ -1,3 +1,5 @@
+import mongoose from 'mongoose'
+
 export type createAchivementDto = {
     title: string;
     description: string;
@@ -14,7 +16,7 @@ export type updateAchivementDto = {
 
 export type manageUserAchivementDto = {
     action: ManageUserAchivementActions;
-    achivementsIds: string[];
+    achivementsIds: mongoose.Types.ObjectId[];
 };
 
 export enum ManageUserAchivementActions {

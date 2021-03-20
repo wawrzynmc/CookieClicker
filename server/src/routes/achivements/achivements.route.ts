@@ -39,6 +39,14 @@ router.post(
     createAchivementController
 );
 router.patch(
+    '/user',
+    currentUserMiddleware,
+    requireAuthMiddleware,
+    manageUserAchivementsValidator,
+    validateRequestMiddleware,
+    manageUserAchivementsController
+);
+router.patch(
     '/:id',
     currentUserMiddleware,
     requireAuthMiddleware,
@@ -46,14 +54,6 @@ router.patch(
     updateAchivementValidator,
     validateRequestMiddleware,
     updateAchivementController
-);
-router.patch(
-    '/user/:id',
-    currentUserMiddleware,
-    requireAuthMiddleware,
-    manageUserAchivementsValidator,
-    validateRequestMiddleware,
-    manageUserAchivementsController
 );
 router.delete(
     '/:id',

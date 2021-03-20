@@ -11,6 +11,7 @@ interface AchivementAttrs {
 
 // ---- user properties (User Document - properties of a single entity)
 interface AchivementDoc extends mongoose.Document {
+    _id: mongoose.Types.ObjectId;
     title: string;
     description: string;
     points: number;

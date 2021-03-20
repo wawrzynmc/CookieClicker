@@ -13,6 +13,7 @@ interface UserDoc extends mongoose.Document {
     email: string;
     password: string;
     role: UserRoles;
+    achivements: mongoose.Types.ObjectId[];
 }
 
 // ---- user model properties and methods (represents entire collection of data)
@@ -44,10 +45,12 @@ const userSchema = new mongoose.Schema(
             default: UserRoles.USER,
             enum: Object.values(UserRoles),
         },
-        achivements: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Achivement'
-        }]
+        achivements: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Achivement',
+            },
+        ],
     },
     {
         toJSON: {
