@@ -8,14 +8,13 @@ function Authenticate() {
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
-        console.log(newValue);
         setValue(newValue);
     };
     return (
         <Paper elevation={10} variant="outlined">
             <Tabs value={value} onChange={handleChange} indicatorColor="secondary" centered>
-                <Tab label={<Typography>Sign In</Typography>} />
-                <Tab label={<Typography>Sign Up</Typography>} />
+                <Tab label={<Typography variant="h5">Sign In</Typography>} />
+                <Tab label={<Typography variant="h5">Sign Up</Typography>} />
             </Tabs>
             <TabPanel value={value} index={0}>
                 <SignIn handleChange={handleChange} />

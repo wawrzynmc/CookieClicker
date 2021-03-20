@@ -1,12 +1,9 @@
 import {
     Avatar,
     Button,
-    Checkbox,
-    FormControlLabel,
     Grid,
     IconButton,
     InputAdornment,
-    Paper,
     TextField,
     Typography,
     useTheme,
@@ -88,7 +85,7 @@ function SignUp({ handleChange }) {
                 </Grid>
                 <Grid item>
                     <Typography variant="body2" style={{ textAlign: 'center' }}>
-                        <Link href="#" onClick={() => handleChange('event', 0)}>
+                        <Link to="#" onClick={() => handleChange('event', 0)}>
                             Already have an account?
                         </Link>
                     </Typography>
