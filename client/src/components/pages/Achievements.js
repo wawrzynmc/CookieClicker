@@ -7,6 +7,8 @@ import styled from 'styled-components';
 // -- internal components
 import AchivementAccordion from '../molecules/AchivementAccordion/AchivementAccordion';
 import { fetchAchivements } from '../../api/achivements-api';
+import Dialog from '../organisms/Dialog/Dialog';
+import Loader from '../molecules/Loader/Loader';
 
 // * -- COMPONENT
 function Achievements() {
@@ -21,6 +23,8 @@ function Achievements() {
 
     return (
         <>
+            {error && <Dialog type="error" />}
+            {isLoading && <Loader />}
             <StyledContainer maxWidth="lg" disableGutters={true} theme={theme}>
                 <Typography
                     variant="h4"
