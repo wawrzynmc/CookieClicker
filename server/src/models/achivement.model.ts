@@ -38,11 +38,11 @@ const achivementSchema = new mongoose.Schema(
         },
         points: {
             type: Number,
-            min: 1,
+            min: 0,
         },
         level: {
             type: Number,
-            min: 1,
+            min: 0,
         },
         users: [
             {
