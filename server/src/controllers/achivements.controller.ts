@@ -8,6 +8,7 @@ import { BadRequestError } from '../errors/bad-request.error';
 import { Achivement } from '../models/achivement.model';
 import { User } from '../models/user.model';
 import mongoose from 'mongoose';
+import { NotFoundError } from '../errors/not-found.error';
 
 export const getAchivementsController = async (req: Request, res: Response, next: NextFunction) => {
     const achivements = await Achivement.find();
@@ -16,7 +17,14 @@ export const getAchivementsController = async (req: Request, res: Response, next
 };
 
 export const getAchivementController = async (req: Request, res: Response, next: NextFunction) => {
-    res.send('Return achivement');
+    const achivementId = req.params.id;
+    const achivement = await Achivement.findOne({ _id: achivementId });
+
+    if (!achivement) {
+        throw new NotFoundError();
+    }
+
+    res.status(200).send(achivement);
 };
 
 export const getUserAchivementsController = async (
