@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import {
     Avatar,
@@ -16,14 +16,23 @@ import { LockOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
 import { useMutation } from 'react-query';
 import { signIn } from '../../../api/users-api';
 import Loader from '../../molecules/Loader/Loader';
+import Dialog from '../Dialog/Dialog';
+import { parseServerError } from '../../../shared/utils';
+import { useDispatch } from 'react-redux';
+import { login } from '../../../store/actions';
+
+export const xd = () => {};
 
 function SignIn({ handleChange }) {
+    const dispatch = useDispatch();
     const theme = useTheme();
+    const history = useHistory();
     const [showPassword, setShowPassword] = useState(false);
     const { control, handleSubmit, errors } = useForm({});
-    const { mutate, isLoading, isError, error, isSuccess } = useMutation(signIn);
+    const { mutateAsync, isLoading, isError, error } = useMutation(signIn);
 
-    // TODO: do something if isSuccess (redirect to main page)
+    const networkError = isError && !error?.response;
+    const serverError = isError && !!error?.response;
 
     const validationRules = {
         email: { required: 'Email is required' },
@@ -32,18 +41,27 @@ function SignIn({ handleChange }) {
         },
     };
 
-    console.log(error);
-
     const toggleShowPasswordHandler = () => {
         setShowPassword((prev) => !prev);
     };
 
-    const onFormSubmit = (data) => {
-        console.log(data);
-        mutate(data);
+    const onFormSubmit = async (data) => {
+        try {
+            await mutateAsync(data);
+            await dispatch(login());
+            history.push({
+                pathname: '/home',
+                state: {
+                    success: true,
+                    message: 'Successful Login',
+                },
+            });
+        } catch (err) {}
     };
+
     return (
         <>
+            {networkError && <Dialog type="error" />}
             {isLoading && <Loader />}
             <Grid
                 container
@@ -124,7 +142,13 @@ function SignIn({ handleChange }) {
                             )}
                         />
                     </Grid>
-                    <Grid item>{isError && <FormHelperText error></FormHelperText>}</Grid>
+                    <Grid item>
+                        {serverError && (
+                            <FormHelperText error>
+                                {parseServerError(error.response.data.errors)}
+                            </FormHelperText>
+                        )}
+                    </Grid>
                     <Grid item>
                         <Button
                             type="submit"

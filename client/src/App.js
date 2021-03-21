@@ -10,14 +10,36 @@ import Loader from './components/molecules/Loader/Loader';
 
 // -- internal components
 import Header from './components/organisms/Header/Header';
+import { useDispatch } from 'react-redux';
+import { checkAuth } from './api/users-api';
+import { useQuery } from 'react-query';
+import { login, logout } from './store/actions';
+import Dialog from './components/organisms/Dialog/Dialog';
 const Achievements = React.lazy(() => import('./components/pages/Achievements'));
 const Home = React.lazy(() => import('./components/pages/Home'));
 const Shop = React.lazy(() => import('./components/pages/Shop'));
 const Authenticate = React.lazy(() => import('./components/pages/Authenticate'));
 
+const CheckAuthFetch = () => {
+    const dispatch = useDispatch();
+    const { data, error } = useQuery('checkAuth', checkAuth);
+
+    if (data) {
+        console.log(data);
+        if (data.currentUser) {
+            dispatch(login());
+        } else {
+            dispatch(logout());
+        }
+    }
+
+    return { error };
+};
+
 // * -- COMPONENT
 function App() {
     const location = useLocation();
+    const { error } = CheckAuthFetch();
 
     const routes = (
         <Switch location={location} key={location.pathname}>
@@ -43,6 +65,7 @@ function App() {
             <StyledContainer component="main">
                 <Suspense fallback={<Loader />}>
                     <GlobalStyles />
+                    {error && <Dialog type="error" />}
                     {routes}
                 </Suspense>
             </StyledContainer>

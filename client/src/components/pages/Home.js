@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Button, Grid, Typography, useTheme } from '@material-ui/core';
 import { RotateLeftOutlined, RotateRightOutlined } from '@material-ui/icons';
@@ -9,12 +9,37 @@ import ValueLabel from '../atoms/ValueLabel/ValueLabel';
 import { useDispatch, useSelector } from 'react-redux';
 import { calculateLevel } from '../../shared/utils';
 import { clearPoints } from '../../store/actions';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 
 // * -- COMPONENT
 function Home() {
     const theme = useTheme();
+    const location = useLocation();
+    const history = useHistory();
     const { points } = useSelector((state) => state.cookie);
+    const { isLoggedIn } = useSelector((state) => state.user);
+    const { enqueueSnackbar } = useSnackbar();
     const dispatch = useDispatch();
+
+    console.log('dsadas', isLoggedIn);
+
+    useEffect(() => {
+        if (location.state?.success) {
+            enqueueSnackbar(location.state.message, {
+                variant: 'success',
+                anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'left',
+                },
+            });
+
+            const locationState = { ...location.state };
+            delete locationState.success;
+            delete locationState.message;
+            history.replace({ state: locationState });
+        }
+    }, [enqueueSnackbar, history, location.state]);
 
     return (
         <StyledContainerGrid

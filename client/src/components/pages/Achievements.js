@@ -7,13 +7,12 @@ import styled from 'styled-components';
 // -- internal components
 import AchivementAccordion from '../molecules/AchivementAccordion/AchivementAccordion';
 import { fetchAchivements } from '../../api/achivements-api';
-import Dialog from '../organisms/Dialog/Dialog';
 import Loader from '../molecules/Loader/Loader';
 
 // * -- COMPONENT
 function Achievements() {
     const theme = useTheme();
-    const { data: achivements, error, isLoading } = useQuery('fetchAchivements', fetchAchivements);
+    const { data: achivements, isLoading } = useQuery('fetchAchivements', fetchAchivements);
 
     useEffect(() => {
         // dispatch redux action
@@ -21,7 +20,6 @@ function Achievements() {
 
     return (
         <>
-            {error && <Dialog type="error" />}
             {isLoading && <Loader />}
             <StyledContainerGrid>
                 <StyledContainer maxWidth="lg" disableGutters={true} theme={theme}>

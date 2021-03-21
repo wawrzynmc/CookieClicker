@@ -5,7 +5,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { ListItem, ListItemIcon, ListItemText, useTheme } from '@material-ui/core';
 
 // * -- COMPONENT
-function NavigationItem({ key, title, path, icon, inSideDrawer }) {
+function NavigationItem({ key, title, path, icon, inSideDrawer, state, to, onClick }) {
     const theme = useTheme();
     const location = useLocation();
 
@@ -18,9 +18,11 @@ function NavigationItem({ key, title, path, icon, inSideDrawer }) {
             key={key}
             component={NavLink}
             to={path}
+            state={state}
             exact={true}
             selected={location.pathname === path}
             inSideDrawer={inSideDrawer}
+            onClick={onClick}
         >
             <StyledListItemIcon>{icon && icon}</StyledListItemIcon>
             {title && (

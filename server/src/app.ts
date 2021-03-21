@@ -2,18 +2,16 @@ import express, { Request, Response } from 'express';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 import { json } from 'body-parser';
+import cors from 'cors';
 import 'express-async-errors';
 
-
 // -- internal imports
-import { corsMiddleware } from './middlewares/cors.middleware';
 import { morganMiddleware } from './middlewares/morgan.middleware';
 import { NotFoundError } from './errors/not-found.error';
 import { errorHandler } from './middlewares/error-handler.middleware';
 import { cookieSessionMiddleware } from './middlewares/cookie-session.middleware';
 import { usersRouter } from './routes/users/users.route';
 import { achivementsRouter } from './routes/achivements/achivements.route';
-// import { currentUserRouter } from './routes/current-user';
 
 // -- config env path
 dotenv.config({ path: path.join(__dirname, '.env') });
@@ -24,7 +22,11 @@ const app: express.Application = express();
 // * -- middlewares
 app.use(json());
 app.use(morganMiddleware);
-app.use(corsMiddleware);
+app.use(cors({
+    origin: process.env.CLIENT_URI,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true
+}));
 app.use(cookieSessionMiddleware);
 
 // * -- routes
