@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  server:
+    container_name: 'server-node'
+    build: ./server
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./server:/app
+      - /server/node_modules
+    env_file: 
+      - ./env/server.dev.env
+  client:
+    build: ./client
+    ports: 
+      - '3000:3000'
+    volumes:
+      - ./client/src:/app/src
+    env_file: 
+      - ./env/client.dev.env
+    stdin_open: true
+    tty: true
+    depends_on:
+      - server

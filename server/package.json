@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src/index.ts",
+    "start": "node ./build/index.js",
+    "start:dev": "nodemon -L ./src/index.ts",
+    "build": "tsc -b",
     "test": "jest --watchAll --no-cache"
   },
   "jest": {
