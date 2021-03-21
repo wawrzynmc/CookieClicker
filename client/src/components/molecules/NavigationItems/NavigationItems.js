@@ -1,6 +1,8 @@
 // -- imports
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { useMutation, useQueryClient } from 'react-query';
 import { List } from '@material-ui/core';
 import {
     StoreMallDirectoryOutlined,
@@ -9,17 +11,15 @@ import {
     ExitToAppOutlined,
 } from '@material-ui/icons';
 
-// -- internal components
+// -- internal components/imports
 import NavigationItem from '../../atoms/NavigationItem/NavigationItem';
-import { useDispatch, useSelector } from 'react-redux';
-import { useMutation, useQueryClient } from 'react-query';
-import {signOut} from '../../../api/users-api'
+import { signOut } from '../../../api/users-api';
 import { logout } from '../../../store/actions';
+import { CHECK_AUTH } from '../../../api/queries/queries-keys';
 
 // * -- COMPONENT
 function NavigationItems({ sideDrawer }) {
-    // Access the client
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();
     const { isLoggedIn } = useSelector((state) => state.user);
     const inSideDrawer = !!sideDrawer;
     const { mutateAsync } = useMutation(signOut);
@@ -29,15 +29,16 @@ function NavigationItems({ sideDrawer }) {
         try {
             await mutateAsync();
             await dispatch(logout());
-            queryClient.removeQueries('checkAuth', { exact: true })
+
+            // -- clear cache
+            queryClient.removeQueries(CHECK_AUTH, { exact: true });
         } catch (err) {}
-    }
+    };
 
     return (
         <StyledList component="nav" sideDrawer={sideDrawer}>
             {inSideDrawer && (
                 <NavigationItem
-                    key="home"
                     title="home"
                     path="/home"
                     icon={<HomeOutlined color="secondary" style={{ fontSize: '2rem' }} />}
@@ -45,14 +46,12 @@ function NavigationItems({ sideDrawer }) {
                 />
             )}
             <NavigationItem
-                key="achivements"
                 title="achivements"
                 path="/achivements"
                 icon={<StoreMallDirectoryOutlined color="secondary" style={{ fontSize: '2rem' }} />}
                 inSideDrawer={inSideDrawer}
             />
             <NavigationItem
-                key="shop"
                 title="shop"
                 path="/shop"
                 icon={<FitnessCenterOutlined color="secondary" style={{ fontSize: '2rem' }} />}
@@ -60,7 +59,6 @@ function NavigationItems({ sideDrawer }) {
             />
             {!isLoggedIn && (
                 <NavigationItem
-                    key="authenticate"
                     title="authenticate"
                     path="/authenticate"
                     icon={<ExitToAppOutlined color="secondary" style={{ fontSize: '2rem' }} />}
@@ -69,10 +67,9 @@ function NavigationItems({ sideDrawer }) {
             )}
             {isLoggedIn && (
                 <NavigationItem
-                    key="logout"
                     title="logout"
                     path="/logout"
-                    state={{success: true, message: 'Successful Logout'}}
+                    state={{ success: true, message: 'Successful Logout' }}
                     icon={<ExitToAppOutlined color="secondary" style={{ fontSize: '2rem' }} />}
                     inSideDrawer={inSideDrawer}
                     onClick={onLogoutHandler}

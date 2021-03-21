@@ -1,45 +1,28 @@
 // -- imports
 import React, { Suspense } from 'react';
-import { Container, CssBaseline, responsiveFontSizes, ThemeProvider } from '@material-ui/core';
-import { Route, Redirect, Switch, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import { Route, Redirect, Switch, useLocation } from 'react-router-dom';
+import { Container, CssBaseline, responsiveFontSizes, ThemeProvider } from '@material-ui/core';
 
 // -- global styles
 import { GlobalStyles, theme } from './assets/styles/GlobalStyles';
-import Loader from './components/molecules/Loader/Loader';
 
-// -- internal components
+// -- internal components/imports
 import Header from './components/organisms/Header/Header';
-import { useDispatch } from 'react-redux';
-import { checkAuth } from './api/users-api';
-import { useQuery } from 'react-query';
-import { login, logout } from './store/actions';
+import Loader from './components/molecules/Loader/Loader';
 import Dialog from './components/organisms/Dialog/Dialog';
+import { checkAuthQuery } from './api/queries/queries';
+
+// -- lazy loading
 const Achievements = React.lazy(() => import('./components/pages/Achievements'));
 const Home = React.lazy(() => import('./components/pages/Home'));
 const Shop = React.lazy(() => import('./components/pages/Shop'));
 const Authenticate = React.lazy(() => import('./components/pages/Authenticate'));
 
-const CheckAuthFetch = () => {
-    const dispatch = useDispatch();
-    const { data, error } = useQuery('checkAuth', checkAuth);
-
-    if (data) {
-        console.log(data);
-        if (data.currentUser) {
-            dispatch(login());
-        } else {
-            dispatch(logout());
-        }
-    }
-
-    return { error };
-};
-
 // * -- COMPONENT
 function App() {
     const location = useLocation();
-    const { error } = CheckAuthFetch();
+    const { isError } = checkAuthQuery();
 
     const routes = (
         <Switch location={location} key={location.pathname}>
@@ -65,7 +48,7 @@ function App() {
             <StyledContainer component="main">
                 <Suspense fallback={<Loader />}>
                     <GlobalStyles />
-                    {error && <Dialog type="error" />}
+                    {isError && <Dialog type="error" />}
                     {routes}
                 </Suspense>
             </StyledContainer>
@@ -74,6 +57,7 @@ function App() {
     );
 }
 
+// -- styled components
 const StyledContainer = styled(({ ...props }) => <Container {...props} />)`
     && {
         display: flex;

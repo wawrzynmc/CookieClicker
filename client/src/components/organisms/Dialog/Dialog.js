@@ -1,3 +1,6 @@
+// -- imports
+import React, { useState } from 'react';
+import styled, { css } from 'styled-components';
 import {
     Button,
     useMediaQuery,
@@ -9,9 +12,8 @@ import {
     DialogActions,
 } from '@material-ui/core';
 import { ErrorOutlineOutlined } from '@material-ui/icons';
-import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
 
+// * -- COMPONENT
 function Dialog({ type, content }) {
     const theme = useTheme();
     const [open, setOpen] = useState(true);
@@ -65,6 +67,7 @@ function Dialog({ type, content }) {
     );
 }
 
+// -- styled components
 const StyledDialogTitle = styled(({ type, ...props }) => <DialogTitle {...props} />)`
     && {
         ${(props) =>

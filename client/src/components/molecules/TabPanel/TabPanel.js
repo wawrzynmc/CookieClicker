@@ -1,5 +1,6 @@
-import { Box } from '@material-ui/core';
+// -- imports
 import React from 'react';
+import { Box } from '@material-ui/core';
 
 function TabPanel({ children, value, index, ...other }) {
     return (

@@ -1,10 +1,10 @@
 // * -- cookies calculate level function
-export function calculateLevel(punctions, startingLevel = 10) {
-    if (punctions < startingLevel) {
+export function calculateLevel(points, startingLevel = 10) {
+    if (points < startingLevel) {
         return 1;
     }
 
-    return 1 + calculateLevel(punctions, startingLevel * 2);
+    return 1 + calculateLevel(points, startingLevel * 2);
 }
 
 // * -- local storage functions
@@ -28,6 +28,7 @@ export const saveToLocalStorage = (state) => {
     }
 };
 
+// * -- server errors parser
 export const parseServerError = (errors) => {
     let errorMsg = '';
     errors.forEach((error) => {

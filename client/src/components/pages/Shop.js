@@ -7,6 +7,7 @@ import { Container } from '@material-ui/core';
 function Shop() {
     return (
         <Container style={{ height: '100%' }}>
+            SHOP
         </Container>
     );
 }

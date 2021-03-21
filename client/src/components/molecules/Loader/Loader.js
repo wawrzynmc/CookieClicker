@@ -1,6 +1,8 @@
-import { Backdrop, CircularProgress } from '@material-ui/core';
+// -- imports
 import React, { useState } from 'react';
+import { Backdrop, CircularProgress } from '@material-ui/core';
 
+// * -- COMPONENT
 function Loader() {
     const [open, setOpen] = useState(true);
 

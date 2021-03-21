@@ -1,6 +1,9 @@
+// -- imports
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
+import { useMutation } from 'react-query';
+import { useDispatch } from 'react-redux';
 import {
     Avatar,
     Button,
@@ -13,15 +16,20 @@ import {
     useTheme,
 } from '@material-ui/core';
 import { LockOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
-import { useMutation } from 'react-query';
+
+// -- internal components/imports
 import { signIn } from '../../../api/users-api';
 import Loader from '../../molecules/Loader/Loader';
-import Dialog from '../Dialog/Dialog';
 import { parseServerError } from '../../../shared/utils';
-import { useDispatch } from 'react-redux';
 import { login } from '../../../store/actions';
 
-export const xd = () => {};
+// -- validation rules
+const validationRules = {
+    email: { required: 'Email is required' },
+    password: {
+        required: 'Password is required',
+    },
+};
 
 function SignIn({ handleChange }) {
     const dispatch = useDispatch();
@@ -30,20 +38,7 @@ function SignIn({ handleChange }) {
     const [showPassword, setShowPassword] = useState(false);
     const { control, handleSubmit, errors } = useForm({});
     const { mutateAsync, isLoading, isError, error } = useMutation(signIn);
-
-    const networkError = isError && !error?.response;
     const serverError = isError && !!error?.response;
-
-    const validationRules = {
-        email: { required: 'Email is required' },
-        password: {
-            required: 'Password is required',
-        },
-    };
-
-    const toggleShowPasswordHandler = () => {
-        setShowPassword((prev) => !prev);
-    };
 
     const onFormSubmit = async (data) => {
         try {
@@ -59,9 +54,12 @@ function SignIn({ handleChange }) {
         } catch (err) {}
     };
 
+    const toggleShowPasswordHandler = () => {
+        setShowPassword((prev) => !prev);
+    };
+
     return (
         <>
-            {networkError && <Dialog type="error" />}
             {isLoading && <Loader />}
             <Grid
                 container

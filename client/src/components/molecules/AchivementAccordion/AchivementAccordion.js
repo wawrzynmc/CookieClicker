@@ -15,17 +15,17 @@ import {
 } from '@material-ui/icons';
  import React from 'react';
 
-// -- internal components
+// -- internal components/imports
 import IconButton from '../../atoms/IconButton/IconButton';
 
-const userAchivementsIds = ['1', '3'];
 
 // * -- COMPONENT
 function AchivementAccordion({ achivement, id }) {
     const { title, description } = achivement;
 
-    // -- check if achivement has been achived
-    const achived = userAchivementsIds.includes(id);
+    // TODO: check if achivement has been achived
+    // const achived = userAchivementsIds.includes(id);
+    const achived = false;
 
     return (
         <Grid key={id} item xs={12} sm={6} md={4}>

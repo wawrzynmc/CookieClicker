@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Typography, useTheme } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
 
-// -- internal components
+// -- internal components/imports
 import IconButton from '../IconButton/IconButton';
 
 // * -- COMPONENT

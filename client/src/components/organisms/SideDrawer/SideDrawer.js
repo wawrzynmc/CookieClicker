@@ -1,11 +1,10 @@
 // -- imports
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
 import { Drawer, useTheme } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
 
-// -- internal components
+// -- internal components/imports
 import IconButton from '../../atoms/IconButton/IconButton';
 import NavigationItems from '../../molecules/NavigationItems/NavigationItems';
 

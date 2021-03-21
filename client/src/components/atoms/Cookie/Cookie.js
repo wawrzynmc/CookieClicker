@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { motion, useCycle } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 
-// -- internal components
+// -- internal components/imports
 import coockieSVG from '../../../assets/images/cookie.svg';
 import { incrementPoints } from '../../../store/actions';
 import { cookieAnimation } from '../../../shared/animations';

@@ -1,35 +1,36 @@
+// -- imports
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 import { Button, Grid, Typography, useTheme } from '@material-ui/core';
 import { RotateLeftOutlined, RotateRightOutlined } from '@material-ui/icons';
 
-// -- internal components
+// -- internal components/imports
 import Cookie from '../atoms/Cookie/Cookie';
 import ValueLabel from '../atoms/ValueLabel/ValueLabel';
 import { useDispatch, useSelector } from 'react-redux';
 import { calculateLevel } from '../../shared/utils';
 import { clearPoints } from '../../store/actions';
-import { useHistory, useLocation } from 'react-router-dom';
-import { useSnackbar } from 'notistack';
 
 // * -- COMPONENT
 function Home() {
     const theme = useTheme();
     const location = useLocation();
     const history = useHistory();
-    const { points } = useSelector((state) => state.cookie);
-    const { isLoggedIn } = useSelector((state) => state.user);
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useDispatch();
 
-    console.log('dsadas', isLoggedIn);
+    const {
+        cookie: { points },
+    } = useSelector((state) => state);
 
     useEffect(() => {
         if (location.state?.success) {
             enqueueSnackbar(location.state.message, {
                 variant: 'success',
                 anchorOrigin: {
-                    vertical: 'top',
+                    vertical: 'bottom',
                     horizontal: 'left',
                 },
             });

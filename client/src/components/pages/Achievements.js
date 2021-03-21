@@ -1,22 +1,17 @@
 // -- imports
-import React, { useEffect } from 'react';
-import { useQuery } from 'react-query';
-import { Container, Grid, Typography, useTheme } from '@material-ui/core';
+import React from 'react';
 import styled from 'styled-components';
+import { Container, Grid, Typography, useTheme } from '@material-ui/core';
 
-// -- internal components
+// -- internal components/imports
 import AchivementAccordion from '../molecules/AchivementAccordion/AchivementAccordion';
-import { fetchAchivements } from '../../api/achivements-api';
 import Loader from '../molecules/Loader/Loader';
+import { getAchivementsQuery } from '../../api/queries/queries';
 
 // * -- COMPONENT
 function Achievements() {
     const theme = useTheme();
-    const { data: achivements, isLoading } = useQuery('fetchAchivements', fetchAchivements);
-
-    useEffect(() => {
-        // dispatch redux action
-    }, [achivements]);
+    const { data: achivements, isLoading } = getAchivementsQuery();
 
     return (
         <>

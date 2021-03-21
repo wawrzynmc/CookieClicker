@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { AppBar, Toolbar, Hidden, Grid } from '@material-ui/core';
 
-// -- internal components
+// -- internal components/imports
 import NavigationItems from '../../molecules/NavigationItems/NavigationItems';
 import SideDrawer from '../SideDrawer/SideDrawer';
 import Logo from '../../atoms/Logo/Logo';
