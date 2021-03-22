@@ -50,7 +50,7 @@ function SignIn({ handleChange }) {
                 pathname: '/home',
                 state: {
                     success: true,
-                    message: 'Successful Login',
+                    message: 'Successful Signin',
                 },
             });
         } catch (err) {}

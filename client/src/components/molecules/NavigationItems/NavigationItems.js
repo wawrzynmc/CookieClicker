@@ -16,6 +16,7 @@ import NavigationItem from '../../atoms/NavigationItem/NavigationItem';
 import { signOut } from '../../../api/users-api';
 import { logout } from '../../../store/actions';
 import { CHECK_AUTH } from '../../../api/queries/queries-keys';
+import { useHistory } from 'react-router-dom';
 
 // * -- COMPONENT
 function NavigationItems({ sideDrawer }) {
@@ -23,12 +24,20 @@ function NavigationItems({ sideDrawer }) {
     const { isLoggedIn } = useSelector((state) => state.user);
     const inSideDrawer = !!sideDrawer;
     const { mutateAsync } = useMutation(signOut);
+    const history = useHistory();
     const dispatch = useDispatch();
 
     const onLogoutHandler = async () => {
         try {
             await mutateAsync();
             await dispatch(logout());
+            history.push({
+                pathname: '/home',
+                state: {
+                    success: true,
+                    message: 'Successful Logout',
+                },
+            });
 
             // -- clear cache
             queryClient.removeQueries(CHECK_AUTH, { exact: true });

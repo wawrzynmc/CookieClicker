@@ -47,11 +47,7 @@ export const saveToLocalStorage = (state) => {
 export const parseServerError = (errors) => {
     let errorMsg = '';
     errors.forEach((error) => {
-        if (!error.field) {
-            errorMsg = errorMsg.concat(`${error.message}\n`);
-        } else {
-            errorMsg = errorMsg.concat(`-${error.field}: ${error.message}\n`);
-        }
+        errorMsg = errorMsg.concat(`${error.message}\n`);
     });
     return errorMsg;
 };

@@ -10,8 +10,8 @@ export const updateProgress = async (data) => {
 
     try {
         await axios.patch(
-            `${process.env.REACT_APP_SERVER_API_URL}/v1/users/progress/${click_count}`,
-            {},
+            `${process.env.REACT_APP_SERVER_API_URL}/v1/users/progress/`,
+            { click_count },
             {
                 withCredentials: true,
             }
