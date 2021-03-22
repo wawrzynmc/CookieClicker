@@ -7,12 +7,11 @@ import { useDispatch } from 'react-redux';
 import { login, logout } from '../../store/actions';
 import { getAchivements } from '../achivements-api';
 import { checkAuth } from '../users-api';
-import { CHECK_AUTH, GET_ACHIVEMENTS } from './queries-keys';
 
 // * -- queries
-export const checkAuthQuery = () => {
+export const checkAuthQuery = (queryKey) => {
     const dispatch = useDispatch();
-    const { data, isError } = useQuery(CHECK_AUTH, checkAuth);
+    const { data, isError } = useQuery(queryKey, checkAuth);
 
     if (data) {
         if (data.currentUser) {
@@ -25,8 +24,8 @@ export const checkAuthQuery = () => {
     return { isError };
 };
 
-export const getAchivementsQuery = () => {
-    const { data, isLoading } = useQuery(GET_ACHIVEMENTS, getAchivements);
+export const getAchivementsQuery = (queryKey) => {
+    const { data, isLoading } = useQuery(queryKey, getAchivements);
 
     // ? -- evenutally dispatch some action
 

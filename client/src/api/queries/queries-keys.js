@@ -1,2 +1,2 @@
-export const CHECK_AUTH = 'CHECK_AUTH'
-export const GET_ACHIVEMENTS = 'GET_ACHIVEMENTS'
+export const CHECK_AUTH = 'CHECK_AUTH';
+export const GET_ACHIVEMENTS = 'GET_ACHIVEMENTS';

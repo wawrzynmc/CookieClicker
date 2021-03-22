@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import {
     Avatar,
     Button,
+    Dialog,
     FormHelperText,
     Grid,
     IconButton,
@@ -39,6 +40,7 @@ function SignIn({ handleChange }) {
     const { control, handleSubmit, errors } = useForm({});
     const { mutateAsync, isLoading, isError, error } = useMutation(signIn);
     const serverError = isError && !!error?.response;
+    const networkError = isError && !error?.response;
 
     const onFormSubmit = async (data) => {
         try {
@@ -59,7 +61,8 @@ function SignIn({ handleChange }) {
     };
 
     return (
-        <>
+        <>  
+            {networkError && <Dialog type="error" />}
             {isLoading && <Loader />}
             <Grid
                 container

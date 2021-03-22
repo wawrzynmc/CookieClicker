@@ -20,12 +20,8 @@ import IconButton from '../../atoms/IconButton/IconButton';
 
 
 // * -- COMPONENT
-function AchivementAccordion({ achivement, id }) {
+function AchivementAccordion({ achivement, id, achived }) {
     const { title, description } = achivement;
-
-    // TODO: check if achivement has been achived
-    // const achived = userAchivementsIds.includes(id);
-    const achived = false;
 
     return (
         <Grid key={id} item xs={12} sm={6} md={4}>

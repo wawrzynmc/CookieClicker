@@ -10,7 +10,6 @@ import { RotateLeftOutlined, RotateRightOutlined } from '@material-ui/icons';
 import Cookie from '../atoms/Cookie/Cookie';
 import ValueLabel from '../atoms/ValueLabel/ValueLabel';
 import { useDispatch, useSelector } from 'react-redux';
-import { calculateLevel } from '../../shared/utils';
 import { clearPoints } from '../../store/actions';
 
 // * -- COMPONENT
@@ -22,7 +21,7 @@ function Home() {
     const dispatch = useDispatch();
 
     const {
-        cookie: { points },
+        cookie: { points, level },
     } = useSelector((state) => state);
 
     useEffect(() => {
@@ -62,7 +61,7 @@ function Home() {
                 alignItems="center"
                 theme={theme}
             >
-                <ValueLabel value={calculateLevel(points)}>Level</ValueLabel>
+                <ValueLabel value={level}>Level</ValueLabel>
                 <Cookie />
                 <ValueLabel value={points}>Points</ValueLabel>
             </StyledCookieGrid>

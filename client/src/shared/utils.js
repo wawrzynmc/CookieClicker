@@ -7,6 +7,21 @@ export function calculateLevel(points, startingLevel = 10) {
     return 1 + calculateLevel(points, startingLevel * 2);
 }
 
+// * -- check gained achivements
+export function checkAchivements(points, level, achivements, gainedAchivementsIds) {
+    const newAchivements = achivements
+        .filter((achivement) => {
+            return (
+                achivement.points <= points &&
+                achivement.level <= level &&
+                !gainedAchivementsIds.includes(achivement.id)
+            );
+        })
+        .map((achivement) => achivement.id);
+
+    return newAchivements;
+}
+
 // * -- local storage functions
 export const loadFromLocalStorage = () => {
     try {
@@ -39,4 +54,16 @@ export const parseServerError = (errors) => {
         }
     });
     return errorMsg;
+};
+
+// * -- compare arrays
+export const compareArraysContent = (array1, array2) => {
+    return JSON.stringify(array1) === JSON.stringify(array2);
+};
+
+// * -- remove element from array
+export const removeValueFromArray = (array, value) => {
+    return array.filter(function (element) {
+        return element !== value;
+    });
 };

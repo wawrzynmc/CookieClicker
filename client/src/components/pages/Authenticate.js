@@ -5,7 +5,7 @@ import { Paper, Tab, Tabs, Typography } from '@material-ui/core';
 // -- internal components/imports
 import SignIn from '../organisms/SignIn/SignIn';
 import SignUp from '../organisms/SignUp/SignUp';
-import TabPanel from '../organisms/TabPanel/TabPanel';
+import TabPanel from '../molecules/TabPanel/TabPanel';
 
 // * -- COMPONENT
 function Authenticate() {

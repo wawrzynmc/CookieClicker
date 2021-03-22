@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import achivementsReducer from './achivementsReducer';
 import cookieReducer from './cookieReducer';
 import userReducer from './userReducer';
 
@@ -6,6 +7,7 @@ import userReducer from './userReducer';
 const rootReducer = combineReducers({
     cookie: cookieReducer,
     user: userReducer,
+    achivements: achivementsReducer,
 });
 
 export default rootReducer;

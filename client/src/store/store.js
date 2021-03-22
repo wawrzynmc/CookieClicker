@@ -13,10 +13,12 @@ const composeEnhancers =
 const store = createStore(rootReducer, loadFromLocalStorage(), composeEnhancers());
 
 // -- save state to localStorage
-store.subscribe(() =>
+store.subscribe(() => {
+    const { cookie, achivements } = store.getState();
     saveToLocalStorage({
-        cookie: store.getState().cookie,
-    })
-);
+        cookie,
+        achivements,
+    });
+});
 
 export default store;

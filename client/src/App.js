@@ -12,6 +12,7 @@ import Header from './components/organisms/Header/Header';
 import Loader from './components/molecules/Loader/Loader';
 import Dialog from './components/organisms/Dialog/Dialog';
 import { checkAuthQuery } from './api/queries/queries';
+import { CHECK_AUTH } from './api/queries/queries-keys';
 
 // -- lazy loading
 const Achievements = React.lazy(() => import('./components/pages/Achievements'));
@@ -22,7 +23,7 @@ const Authenticate = React.lazy(() => import('./components/pages/Authenticate'))
 // * -- COMPONENT
 function App() {
     const location = useLocation();
-    const { isError } = checkAuthQuery();
+    const { isError } = checkAuthQuery(CHECK_AUTH);
 
     const routes = (
         <Switch location={location} key={location.pathname}>

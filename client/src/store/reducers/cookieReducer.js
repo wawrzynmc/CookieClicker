@@ -1,22 +1,36 @@
+import { calculateLevel } from '../../shared/utils';
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     points: 0,
+    level: 0,
 };
 
 // --- AUXILIARY FUNCTIONS
 const addPoints = (state, action) => {
-    return { 
-        ...state, 
-        points: state.points + action.points 
+    const points = state.points + action.points;
+    const level = calculateLevel(points);
+    console.log(points, level);
+    return {
+        ...state,
+        points,
+        level,
     };
 };
 
 const clearPoints = (state, action) => {
-    return { 
-        ...state, 
-        points: 0 
+    const points = 0;
+    const level = calculateLevel(points);
+    return {
+        ...state,
+        points,
+        level,
     };
+};
+
+const checkPoints = (state, action) => {
+    console.log(state);
+    return state;
 };
 
 // --- REDUCER ACTIONS
@@ -26,6 +40,8 @@ const cookieReducer = (state = initialState, action) => {
             return addPoints(state, action);
         case actionTypes.CLEAR_POINTS:
             return clearPoints(state, action);
+        case actionTypes.CHECK_POINTS:
+            return checkPoints(state, action);
         default:
             return state;
     }
