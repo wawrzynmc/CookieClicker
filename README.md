@@ -1,4 +1,4 @@
-<h1>Authentication application <img src="shots/cookie.svg" height="40px"></h1>
+<h1>Cookie clicker <img src="shots/cookie.svg" height="40px"></h1>
 
 <h2>👀 Shots 👀</h2> 
 <p align="center">
@@ -48,6 +48,7 @@ Project inspired by http://orteil.dashnet.org/cookieclicker/ 😇.
     -  react-hook-form
   -  **UI**: MaterialUI
   - **styling**: styled components
+  - **animations**: framer-motion
   
 - **server**:
   - Express with TypeScript
@@ -59,7 +60,7 @@ Project inspired by http://orteil.dashnet.org/cookieclicker/ 😇.
 
 <h2>🏃‍♂️ How to deal with 🏃‍♂️</h2>
 
-- make sure all curcial env variables has been provided 
+- make sure all curcial env variables has been provided (env/client.dev.env and env/server.dev.env)
 - `docker-compose -f docker-compose.dev.yaml up --build`
 
 
