@@ -19,6 +19,7 @@ const Achievements = React.lazy(() => import('./components/pages/Achievements'))
 const Home = React.lazy(() => import('./components/pages/Home'));
 const Shop = React.lazy(() => import('./components/pages/Shop'));
 const Authenticate = React.lazy(() => import('./components/pages/Authenticate'));
+const Characters = React.lazy(() => import('./components/pages/Characters'));
 
 // * -- COMPONENT
 function App() {
@@ -38,6 +39,9 @@ function App() {
             </Route>
             <Route path="/authenticate" exact>
                 <Authenticate />
+            </Route>
+            <Route path="/characters" exact>
+                <Characters />
             </Route>
             <Redirect to="/home" />
         </Switch>

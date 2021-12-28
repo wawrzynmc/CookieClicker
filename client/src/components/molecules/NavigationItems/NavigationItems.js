@@ -66,6 +66,12 @@ function NavigationItems({ sideDrawer }) {
                 icon={<FitnessCenterOutlined color="secondary" style={{ fontSize: '2rem' }} />}
                 inSideDrawer={inSideDrawer}
             />
+            <NavigationItem
+                title="characters"
+                path="/characters"
+                icon={<FitnessCenterOutlined color="secondary" style={{ fontSize: '2rem' }} />}
+                inSideDrawer={inSideDrawer}
+            />
             {!isLoggedIn && (
                 <NavigationItem
                     title="authenticate"
